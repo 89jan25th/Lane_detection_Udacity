@@ -1,11 +1,3 @@
-#**Finding Lane Lines on the Road**  
- 
-##Writeup Template 
- 
-###You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer. 
- 
---- 
- 
 **Finding Lane Lines on the Road** 
  
 The goals / steps of this project are the following: 
@@ -47,4 +39,3 @@ With this assumption and basic algebra I calculated expected points of extrapola
 * 1) If the tweaking procedure is automatic then it will prevent the system from making many abnormal lines. Because the parameters are already fixed, it is not robust and causes shortcomings above mentioned. 
 * 2) The same kind of improvement can be applied to the region of interest. If the region can adapt to lanes, then anomalies will decrease. 
  
-0.83 sec.
