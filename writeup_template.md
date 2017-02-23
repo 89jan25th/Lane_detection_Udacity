@@ -15,7 +15,12 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/grayscale.jpg "Grayscale"
+[image1]: ./Screenshot from 2017-02-23 19-56-13.png "anomaly"
+
+If you'd like to include images to show how the pipeline works, here is how to include an image: 
+
+![alt text][image1]
+
 
 ---
 
@@ -23,25 +28,39 @@ The goals / steps of this project are the following:
 
 ###1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+  My pipeline consists of 5 steps as below.
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+    # 1) Turn the image into gray scale
+    # 2) Give a gaussian blur to the image
+    # 3) Conduct Canny Edge Detection algorithm on the image
+    # 4) Put a mask (region of interest) on the image
+    # 5) Make Hough lines 
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
+  Those were taken from previous courses, then I just tweaked the parameters a little.
+  Note that the tweaking procedure was from experiences.
 
-![alt text][image1]
+  In #5, draw_line is implemented, and the details like this:
 
+  Draw line:
+    # 1) Find graidents and the average values of x1, y1, x2, y2 for the left and right side.
+    In doing so, I put if-statement that judges if the gradient is larger than 0 just like the hint says.
+
+    # 2) Extrapolate the line by finding its expected points at the bottom and top with basic algebra
+    For the sake of argument, I assumed lanes in reality(and video) are linear.
+    With this assumption and basic algebra I calculated expected points of extrapolated lines.
 
 ###2. Identify potential shortcomings with your current pipeline
 
+  # 1) There are some abnormal lines sporadicaly in my result videos. My pipeline's average algorithm is not robust enough to screen anomalies from Hough transform.
+  ![alt text][image1]
 
-One potential shortcoming would be what would happen when ... 
+  # 2) Also my pipeline functions only if the lines are straight enough. From the challange video, you can easily find many abnormal lines.
 
-Another shortcoming could be ...
+  # 3) Also my pipeline highly depends on parameters which are fixed. It should change in accordance with the surroundings.
 
 
 ###3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
+  # 1) If the tweaking procedure is automatic then it will prevent the system from making many abnormal lines. Because the parameters are already fixed, it is not robust and causes shortcomings above mentioned.
 
-Another potential improvement could be to ...
+  # 2) The same kind of improvement can be applied to the region of interest. If the region can adapt to lanes, then anomalies will decrease.
